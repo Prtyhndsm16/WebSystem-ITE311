@@ -1,24 +1,23 @@
-// app/Controllers/Announcement.php
+<?php
+
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
+use App\Models\AnnouncementModel;
 
-class Announcement extends Controller
+class Announcement extends BaseController
 {
-    protected $announcementModel;  // We'll inject this in Task 2
-
-    public function __construct()
-    {
-        // Initialize the model (to be created in Task 2)
-        $this->announcementModel = new \App\Models\AnnouncementModel();
-    }
-
     public function index()
     {
-        // Fetch announcements from the model (to be implemented in Task 2)
-        $announcements = $this->announcementModel->orderBy('created_at', 'DESC')->findAll();
-        
-        // Pass data to the view
-        return view('announcements', ['announcements' => $announcements]);
+        $model = new AnnouncementModel();
+        $data['announcements'] = $model
+            ->orderBy('created_at', 'DESC')
+            ->findAll();
+
+        // pass flashdata if any
+        $data['error'] = session()->getFlashdata('error');
+
+        echo view('templates/header'); // if you have a header template
+        echo view('announcements', $data);
+        echo view('templates/footer');
     }
 }

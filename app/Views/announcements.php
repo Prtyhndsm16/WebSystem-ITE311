@@ -1,28 +1,27 @@
-<!-- app/Views/announcements.php -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Announcements</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Latest Announcements</h1>
-        <?php if (!empty($announcements)): ?>
-            <ul class="list-group">
-                <?php foreach ($announcements as $announcement): ?>
-                    <li class="list-group-item">
-                        <h5><?php echo esc($announcement['title']); ?></h5>
-                        <p><?php echo esc($announcement['content']); ?></p>
-                        <small>Posted on: <?php echo esc($announcement['created_at']); ?></small>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php else: ?>
-            <p>No announcements available.</p>
-        <?php endif; ?>
-    </div>
-</body>
-</html>
+<?php helper('text'); ?>
+
+<?= $this->include('templates/header') ?>
+
+<div class="container mt-4">
+    <?php if(!empty($error)): ?>
+        <div class="alert alert-danger"><?= esc($error) ?></div>
+    <?php endif; ?>
+
+    <h2>Announcements</h2>
+
+    <?php if(empty($announcements)): ?>
+        <p>No announcements yet.</p>
+    <?php else: ?>
+        <div class="list-group">
+            <?php foreach($announcements as $ann): ?>
+                <div class="list-group-item mb-2">
+                    <h5 class="mb-1"><?= esc($ann['title']) ?></h5>
+                    <small class="text-muted"><?= date('F j, Y, g:i A', strtotime($ann['created_at'])) ?></small>
+                    <p class="mb-1 mt-2"><?= nl2br(esc($ann['content'])) ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+</div>
+
+<?= $this->include('templates/footer') ?>
