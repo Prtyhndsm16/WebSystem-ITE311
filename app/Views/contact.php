@@ -1,17 +1,14 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Contact - ITE311-LASTNAME</title>
-</head>
-<body>
-  <nav>
-    <a href="<?= site_url('/') ?>">Home</a> |
-    <a href="<?= site_url('about') ?>">About</a> |
-    <a href="<?= site_url('contact') ?>">Contact</a>
-  </nav>
+<?= $this->extend('layout') ?>
+<?= $this->section('content') ?>
 
-  <h1>Contact</h1>
-  <p>Contact details go here (email, phone, etc.).</p>
-</body>
-</html>
+<div class="card shadow-lg p-4">
+  <h1 class="mb-3 text-danger">📞 Contact Us</h1>
+  <p class="lead">We’d love to hear from you! Here’s how you can reach us:</p>
+  <ul class="list-unstyled fs-5">
+    <li><strong>Email:</strong> yourname@example.com</li>
+    <li><strong>Phone:</strong> +63 912 345 6789</li>
+    <li><strong>Address:</strong> Your City, Philippines</li>
+  </ul>
+</div>
+
+<?= $this->endSection() ?>

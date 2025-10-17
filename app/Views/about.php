@@ -1,17 +1,9 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>About - ITE311-LASTNAME</title>
-</head>
-<body>
-  <nav>
-    <a href="<?= site_url('/') ?>">Home</a> |
-    <a href="<?= site_url('about') ?>">About</a> |
-    <a href="<?= site_url('contact') ?>">Contact</a>
-  </nav>
+<?= $this->extend('layout') ?>
+<?= $this->section('content') ?>
 
-  <h1>About</h1>
-  <p>This is the about page. Put your project description here.</p>
-</body>
-</html>
+<div class="card shadow-lg p-4">
+  <h1 class="mb-3 text-success">ℹ️ About Us</h1>
+  <p class="lead">This page contains information about the project, developer, or system.</p>
+</div>
+
+<?= $this->endSection() ?>

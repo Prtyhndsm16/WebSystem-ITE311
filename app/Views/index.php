@@ -1,17 +1,9 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Home - ITE311-LASTNAME</title>
-</head>
-<body>
-  <nav>
-    <a href="<?= site_url('/') ?>">Home</a> |
-    <a href="<?= site_url('about') ?>">About</a> |
-    <a href="<?= site_url('contact') ?>">Contact</a>
-  </nav>
+<?= $this->extend('layout') ?>
+<?= $this->section('content') ?>
 
-  <h1>Home</h1>
-  <p>Welcome to the homepage of ITE311-LASTNAME.</p>
-</body>
-</html>
+<div class="card shadow-lg p-4">
+  <h1 class="mb-3 text-primary">🏠 Welcome to ITE311-SATURGO</h1>
+  <p class="lead">This is the homepage of your project. Use this site to navigate between pages.</p>
+</div>
+
+<?= $this->endSection() ?>
