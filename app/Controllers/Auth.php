@@ -51,7 +51,7 @@ class Auth extends Controller
         return view('auth/register');
     }
 
-    // ✅ Login page
+    // ✅ Login page (updated for role-based redirection)
     public function login()
     {
         helper(['form']);
@@ -68,6 +68,7 @@ class Auth extends Controller
                 $user = $userModel->where('email', $this->request->getVar('email'))->first();
 
                 if ($user && password_verify($this->request->getVar('password'), $user['password'])) {
+                    // ✅ Store session data
                     $session->set([
                         'id'         => $user['id'],
                         'name'       => $user['name'],
@@ -77,7 +78,20 @@ class Auth extends Controller
                     ]);
 
                     $session->setFlashdata('success', 'Welcome back, ' . $user['name'] . '!');
-                    return redirect()->to('/dashboard');
+
+                    // ✅ Role-based redirection logic
+                    $role = $user['role'];
+
+                    switch ($role) {
+                        case 'admin':
+                            return redirect()->to('/admin/dashboard');
+                        case 'teacher':
+                            return redirect()->to('/teacher/dashboard');
+                        case 'student':
+                        default:
+                            return redirect()->to('/announcements');
+                    }
+
                 } else {
                     $session->setFlashdata('error', 'Invalid email or password');
                     return redirect()->to('/login')->withInput();
